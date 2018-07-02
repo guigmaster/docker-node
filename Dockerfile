@@ -9,10 +9,11 @@ WORKDIR /usr/src/app
 # where available (npm@5+)
 COPY package*.json ./
 
-RUN npm install --silent --progress=false
+RUN npm install --silent --progress=false \
+  && npm cache clean --force
 
 # Bundle app source
 COPY . .
 
 EXPOSE 3000
-CMD [ "npm", "start" ]
+CMD npm start
